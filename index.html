@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brandon Magill</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    
+
+    <header>
+      <h1>Brandon Magill</h1>
+      <p>Electrical Engineering Student</p>
+    </header>
+    
+    
+    <nav>
+      <ul>
+        <li><a href="about.html">about</a></li>
+        <li><a href="archive.html">archive</a></li>
+        <li><a href="https://github.com/bmaglll/" target="_blank" rel="noopener">github</a></li>
+        <li><a href="https://www.linkedin.com/in/brandon-m-583026331/" target="_blank" rel="noopener">linkedin</a></li>
+      </ul>
+    </nav>
+
+    
+
+    <main id="recent-posts"></main>
+  </div>
+
+  <script>
+    fetch('archive.html')
+      .then(r => r.text())
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const posts = doc.querySelectorAll('.post');
+        const container = document.getElementById('recent-posts');
+        for (let i = 0; i < 3 && i < posts.length; i++) {
+          container.appendChild(posts[i].cloneNode(true));
+        }
+      });
+  </script>
+</body>
+</html>
